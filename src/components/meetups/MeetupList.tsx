@@ -1,5 +1,5 @@
-import MeetupItem from './MeetupItem';
-import { IMeetup } from './types';
+import MeetupItem from '@/components/meetups/MeetupItem';
+import { IMeetup } from '@/components/meetups/types';
 import styles from '@/styles/MeetupList.module.css'
 
 interface MeetupListProps {
