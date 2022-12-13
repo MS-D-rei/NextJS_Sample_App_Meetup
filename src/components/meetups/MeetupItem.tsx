@@ -14,7 +14,7 @@ export default function MeetupItem({title, image, address}: MeetupItemProps) {
     <li className={styles.item}>
       <Card>
         <div className={styles.image}>
-          <Image src={image} alt={title} width={600} height={400}/>
+          <Image priority={true} src={image} alt={title} width={600} height={400}/>
         </div>
         <div className={styles.content}>
           <h3>{title}</h3>

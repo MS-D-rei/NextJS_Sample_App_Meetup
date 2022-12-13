@@ -24,6 +24,7 @@
 
 .header a {
   font-size: 1.5rem;
+  margin: 0 0.5rem;
   color: #fcb8d2;
   text-decoration: none;
 }
