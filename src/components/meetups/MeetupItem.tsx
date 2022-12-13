@@ -3,10 +3,10 @@ import Card from "@/components/ui/Card";
 import styles from '@/styles/MeetupItem.module.css'
 
 interface MeetupItemProps {
+  id: string;
   title: string;
   image: string;
   address: string;
-
 }
 
 export default function MeetupItem({title, image, address}: MeetupItemProps) {
@@ -14,7 +14,7 @@ export default function MeetupItem({title, image, address}: MeetupItemProps) {
     <li className={styles.item}>
       <Card>
         <div className={styles.image}>
-          <Image src={image} alt={title} />
+          <Image src={image} alt={title} width={640} height={500}/>
         </div>
         <div className={styles.content}>
           <h3>{title}</h3>
