@@ -3,4 +3,12 @@ export interface IMeetup {
   title: string;
   image: string;
   address: string;
+  description: string;
+}
+
+export interface INewMeetup {
+  title: string;
+  image: string;
+  address: string;
+  description: string;
 }

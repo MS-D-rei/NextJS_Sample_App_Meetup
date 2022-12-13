@@ -7,6 +7,7 @@ const DUMMY_MEETUPS = [
     title: 'First Meetup',
     image: '/images/avi-werde-hHz4yrvxwlA-unsplash.jpg',
     address: 'Okinawa',
+    description: 'have fun in luxuary penthouse'
   }
 ]
 

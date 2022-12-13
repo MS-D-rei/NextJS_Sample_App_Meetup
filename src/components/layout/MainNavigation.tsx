@@ -11,7 +11,7 @@ export default function MainNavigation() {
             <Link href="/">All Meetups</Link>
           </li>
           <li>
-            <Link href="/mew-meetup">Add New Meetup</Link>
+            <Link href="/new-meetup">Add New Meetup</Link>
           </li>
         </ul>
       </nav>
