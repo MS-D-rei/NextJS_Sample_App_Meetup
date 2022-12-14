@@ -1,4 +1,6 @@
-import MeetupList from "@/components/meetups/MeetupList";
+import MeetupList from '@/components/meetups/MeetupList';
+import { IMeetup } from '@/components/meetups/types';
+import { GetStaticProps } from 'next';
 
 const DUMMY_MEETUPS = [
   {
@@ -6,17 +8,37 @@ const DUMMY_MEETUPS = [
     title: 'First Meetup',
     image: '/images/avi-werde-hHz4yrvxwlA-unsplash.jpg',
     address: 'Okinawa',
-    description: 'have fun in luxuary penthouse'
-  }
-]
+    description: 'have fun in luxuary penthouse',
+  },
+];
 
-export default function HomePage() {
-  return(
-    // <Layout>
+export default function HomePage({ meetups }: { meetups: IMeetup[] }) {
+  return (
     <>
-      <h2>Home page</h2>
-      <MeetupList meetups={DUMMY_MEETUPS} />
+      <MeetupList meetups={meetups} />
     </>
-    // </Layout>
-  )
+  );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  // fetch data
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+  };
+};
+
+/* https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props */
+/* server side rendering is for secure content like auth, or data which is changed every second like stock market. */
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const request = context.req;
+//   const response = context.res;
+
+//   // fetch data
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//   };
+// };

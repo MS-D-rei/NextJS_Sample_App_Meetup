@@ -11,7 +11,7 @@ interface MeetupDetailProps {
 export default function MeetupDetail({title, image, address, description}: MeetupDetailProps) {
   return (
     <section className={styles.detail}>
-      <Image src={image} width={600} height={400} alt={title} />
+      <Image priority src={image} width={600} height={400} alt={title} />
       <h2>{title}</h2>
       <address>{address}</address>
       <p>{description}</p>
