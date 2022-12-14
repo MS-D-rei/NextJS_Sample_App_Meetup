@@ -1,16 +1,7 @@
 import MeetupList from '@/components/meetups/MeetupList';
 import { IMeetup } from '@/components/meetups/types';
+import { loadMeetups } from '@/lib/load-meetups';
 import { GetStaticProps } from 'next';
-
-const DUMMY_MEETUPS = [
-  {
-    id: 'm1',
-    title: 'First Meetup',
-    image: '/images/avi-werde-hHz4yrvxwlA-unsplash.jpg',
-    address: 'Okinawa',
-    description: 'have fun in luxuary penthouse',
-  },
-];
 
 export default function HomePage({ meetups }: { meetups: IMeetup[] }) {
   return (
@@ -21,11 +12,13 @@ export default function HomePage({ meetups }: { meetups: IMeetup[] }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  // fetch data
+  // to fetch data through API Route,
+  // import function from other file not to use fetch here.
+  // https://nextjs.org/docs/basic-features/data-fetching/get-static-props#write-server-side-code-directly
+  const meetups = await loadMeetups();
+
   return {
-    props: {
-      meetups: DUMMY_MEETUPS,
-    },
+    props: { meetups },
   };
 };
 

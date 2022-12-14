@@ -17,10 +17,10 @@ interface IData {
 
 // Code in this file never end up on the client side, but for security on Github,
 // use process.env.xxx as the alternate of private info.
-const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster-trial.k7igqc0.mongodb.net/udemy_nextjs_test?retryWrites=true&w=majority`;
-const client = new MongoClient(url);
+// const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster-trial.k7igqc0.mongodb.net/udemy_nextjs_test?retryWrites=true&w=majority`;
+const client = new MongoClient(process.env.DB_URL as string);
 
-const dbName = 'udemy_nextjs_test';
+// const dbName = 'udemy_nextjs_test';
 
 export default async function newMeetupInsertHander(
   req: NextApiRequest,
@@ -34,14 +34,21 @@ export default async function newMeetupInsertHander(
       await client.connect();
       console.log('Connected correctly to server');
 
-      const db = client.db(dbName);
-      const meetupsCollection = db.collection('meetups');
+      const db = client.db(process.env.DB_NAME);
+      const meetupsCollection = db.collection(
+        process.env.DB_COLLECTION_NAME as string
+      );
       const result = await meetupsCollection.insertOne(data);
       console.log(result);
 
-      res.status(201).json({message: 'Meetup successfully inserted'});
+      res.status(201).json({ message: 'Meetup successfully inserted' });
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        res.status(500).json({ message: error.message });
+        console.log(error);
+      } else {
+        console.log(error);
+      }
     } finally {
       await client.close();
     }
