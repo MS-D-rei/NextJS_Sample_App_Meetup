@@ -2,12 +2,16 @@ import React, { useRef } from 'react';
 import Card from '@/components/ui/Card';
 import { INewMeetup } from '@/components/meetups/types';
 import styles from '@/styles/MeetupForm.module.css';
+import { useRouter } from 'next/router';
 
 interface MeetupFormProps {
   onAddMeetup: (meetup: INewMeetup) => void;
 }
 
 export default function MeetupForm({ onAddMeetup }: MeetupFormProps) {
+  const router = useRouter();
+
+  // console.log('MeetupForm rendered');
   const titleInputRef = useRef<HTMLInputElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const addressInputRef = useRef<HTMLInputElement>(null);
@@ -29,6 +33,7 @@ export default function MeetupForm({ onAddMeetup }: MeetupFormProps) {
     };
 
     onAddMeetup(meetupData);
+    router.replace('/');
   };
 
   return (

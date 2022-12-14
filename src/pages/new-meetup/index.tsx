@@ -1,12 +1,22 @@
-import MeetupForm from "@/components/meetups/MeetupForm";
-import { INewMeetup } from "@/components/meetups/types";
+import MeetupForm from '@/components/meetups/MeetupForm';
+import { INewMeetup } from '@/components/meetups/types';
 
 export default function NewMeetupPage() {
-  const addMeetupHandler = (meetup: INewMeetup) => {
-    console.log(meetup);
-  }
+  // console.log('NewMeetupPage rendered');
 
-  return (
-    <MeetupForm onAddMeetup={addMeetupHandler} />
-  )
+  const addMeetupHandler = async (meetup: INewMeetup) => {
+    console.log(meetup);
+
+    const response = await fetch('/api/new-meetup', {
+      method: 'POST',
+      body: JSON.stringify(meetup),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
+  return <MeetupForm onAddMeetup={addMeetupHandler} />;
 }
