@@ -1,7 +1,7 @@
 import MeetupDetail from '@/components/meetups/MeetupDetail';
 import { IMeetup } from '@/components/meetups/types';
 import { loadAllMeetupIds } from '@/lib/load-allMeetupIds';
-import { loadAllMeetups } from '@/lib/load-allMeetups';
+import { loadMeetup } from '@/lib/load-meetup';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 // const DUMMY_MEETUPS = [
@@ -31,7 +31,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const allMeetupIdsPaths = allMeetupIds.map((meetupIdObject) => ({
     params: meetupIdObject,
   }));
-  console.log(allMeetupIdsPaths);
+  // console.log(allMeetupIdsPaths);
+  /*[
+    { params: { meetupId: '63995d574aa2341aa652a8bc' } },
+    { params: { meetupId: '63995e534aa2341aa652a8bd' } },
+    { params: { meetupId: '6399b6b84aa2341aa652a8be' } }
+  ]*/
   
   return {
     // paths contains all meetupIds
@@ -42,10 +47,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   // get a single meetup data
-  const meetupId = context.params?.meetupId;
-  const meetups = await loadAllMeetups();
-  const meetup = meetups.find((meetup) => meetup.id === meetupId);
-  console.log(meetup);
+  const meetupId = context.params?.meetupId as string;
+  const meetup = await loadMeetup(meetupId); 
 
   // console.log is shown only terminal, not browser because this code run in build time.
   // console.log(meetupId);

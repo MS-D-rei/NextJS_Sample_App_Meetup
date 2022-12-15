@@ -1,6 +1,7 @@
 import MeetupList from '@/components/meetups/MeetupList';
 import { IMeetup } from '@/components/meetups/types';
-import { loadAllMeetups } from '@/lib/load-allMeetups';
+// import { apiLoadAllMeetups } from '@/lib/api-load-allMeetups';
+import { loadAllMeetups } from '@/lib/load-allmeetups';
 import { GetStaticProps } from 'next';
 
 export default function HomePage({ meetups }: { meetups: IMeetup[] }) {

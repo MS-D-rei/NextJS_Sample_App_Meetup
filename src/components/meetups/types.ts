@@ -30,3 +30,11 @@ export interface IMeetupMongoDBJSON {
   address: string;
   description: string;
 }
+
+export interface IMeetupId {
+  meetupId: string;
+}
+
+export interface IMeetupIdsMongoDB {
+  _id: ObjectId;
+}

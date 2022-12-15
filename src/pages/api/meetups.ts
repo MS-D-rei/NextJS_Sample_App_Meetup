@@ -15,7 +15,7 @@ export default async function getMeetupsHandler(
       await client.connect();
       const db = client.db(process.env.DB_NAME);
       const meetupsCollection = db.collection(process.env.DB_COLLECTION_NAME as string);
-      const meetups = await meetupsCollection.find().toArray() as IMeetupMongoDB[];
+      const meetupsMongoDB = await meetupsCollection.find().toArray() as IMeetupMongoDB[];
       // console.log(meetups);
 
       /*{
@@ -26,7 +26,7 @@ export default async function getMeetupsHandler(
         description: 'this is a test meetup'
       },*/
 
-      res.status(201).json(meetups);
+      res.status(201).json(meetupsMongoDB);
     } catch (error) {
       console.log(error);
     } finally {
