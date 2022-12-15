@@ -1,6 +1,6 @@
 import MeetupList from '@/components/meetups/MeetupList';
 import { IMeetup } from '@/components/meetups/types';
-import { loadMeetups } from '@/lib/load-meetups';
+import { loadAllMeetups } from '@/lib/load-allMeetups';
 import { GetStaticProps } from 'next';
 
 export default function HomePage({ meetups }: { meetups: IMeetup[] }) {
@@ -15,10 +15,11 @@ export const getStaticProps: GetStaticProps = async () => {
   // to fetch data through API Route,
   // import function from other file not to use fetch here.
   // https://nextjs.org/docs/basic-features/data-fetching/get-static-props#write-server-side-code-directly
-  const meetups = await loadMeetups();
+  const meetups = await loadAllMeetups();
 
   return {
     props: { meetups },
+    revalidate: 10,
   };
 };
 

@@ -1,6 +1,6 @@
 import { IMeetup, IMeetupMongoDBJSON } from '@/components/meetups/types';
 
-export async function loadMeetups() {
+export async function loadAllMeetups() {
   // Need absolute path when use in getStaticProps
   const response = await fetch(`${process.env.LOCALHOST}/api/meetups`, {
     method: 'GET',
