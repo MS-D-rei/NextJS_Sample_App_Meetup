@@ -1,5 +1,6 @@
 import MeetupForm from '@/components/meetups/MeetupForm';
 import { INewMeetup } from '@/components/meetups/types';
+import Head from 'next/head';
 
 export default function NewMeetupPage() {
   // console.log('NewMeetupPage rendered');
@@ -22,5 +23,16 @@ export default function NewMeetupPage() {
     }
   };
 
-  return <MeetupForm onAddMeetup={addMeetupHandler} />;
+  return (
+    <>
+      <Head>
+        <title>Create your meetup</title>
+        <meta
+          name="description"
+          content="Let's create your meetup"
+        />
+      </Head>
+      <MeetupForm onAddMeetup={addMeetupHandler} />;
+    </>
+  );
 }

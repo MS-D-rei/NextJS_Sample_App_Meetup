@@ -3,15 +3,22 @@ import { IMeetup } from '@/components/meetups/types';
 import { loadAllMeetupIds } from '@/lib/load-allMeetupIds';
 import { loadMeetup } from '@/lib/load-meetup';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
 
 export default function Meetup({ meetup }: { meetup: IMeetup }) {
   return (
-    <MeetupDetail
-      title={meetup.title}
-      image={meetup.image}
-      address={meetup.address}
-      description={meetup.description}
-    />
+    <>
+      <Head>
+        <title>{meetup.title}</title>
+        <meta name='description' content={meetup.description} />
+      </Head>
+      <MeetupDetail
+        title={meetup.title}
+        image={meetup.image}
+        address={meetup.address}
+        description={meetup.description}
+      />
+    </>
   );
 }
 
@@ -27,7 +34,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     { params: { meetupId: '63995e534aa2341aa652a8bd' } },
     { params: { meetupId: '6399b6b84aa2341aa652a8be' } }
   ]*/
-  
+
   return {
     // paths contains all meetupIds
     paths: allMeetupIdsPaths,
@@ -38,7 +45,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   // get a single meetup data
   const meetupId = context.params?.meetupId as string;
-  const meetup = await loadMeetup(meetupId); 
+  const meetup = await loadMeetup(meetupId);
 
   // console.log is shown only terminal, not browser because this code run in build time.
   // console.log(meetupId);

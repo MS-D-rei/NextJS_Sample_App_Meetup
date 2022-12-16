@@ -1,12 +1,17 @@
 import MeetupList from '@/components/meetups/MeetupList';
 import { IMeetup } from '@/components/meetups/types';
 // import { apiLoadAllMeetups } from '@/lib/api-load-allMeetups';
-import { loadAllMeetups } from '@/lib/load-allmeetups';
+import { loadAllMeetups } from '@/lib/load-allMeetups';
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 
 export default function HomePage({ meetups }: { meetups: IMeetup[] }) {
   return (
     <>
+      <Head>
+        <title>React Meetups</title>
+        <meta name='description' content='Can find highly active react meetups!' />
+      </Head>
       <MeetupList meetups={meetups} />
     </>
   );
