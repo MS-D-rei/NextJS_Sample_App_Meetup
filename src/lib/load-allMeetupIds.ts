@@ -11,9 +11,14 @@ export async function loadAllMeetupIds() {
       process.env.DB_COLLECTION_NAME as string
     );
     const allMeetupsMongoDB = (await meetupsCollection
-      .find()
+      .find({}, { projection: { _id: 1 } })
       .toArray()) as IMeetupIdsMongoDB[];
     // console.log(allMeetupsMongoDB);
+    /*[
+      { _id: new ObjectId("63995d574aa2341aa652a8bc") },
+      { _id: new ObjectId("63995e534aa2341aa652a8bd") },
+      { _id: new ObjectId("6399b6b84aa2341aa652a8be") }
+    ]*/
     const allMeetupIds = allMeetupsMongoDB.map((meetupMongoDB) => ({
       meetupId: meetupMongoDB._id.toString(),
     }));
